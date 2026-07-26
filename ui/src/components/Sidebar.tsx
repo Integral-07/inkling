@@ -48,7 +48,7 @@ export function Sidebar() {
         <Link to="/welcome" className="wordmark" style={{ textDecoration: 'none' }}>
           Inkling
         </Link>
-        <span className="wordmark-sub">a hunch, inked in</span>
+        <span className="wordmark-sub">Reading, Writing <br></br>ー Growing</span>
 
         <div className="drawer-label">Index</div>
         <ul className="tab-list">

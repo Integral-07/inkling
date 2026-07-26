@@ -35,21 +35,30 @@ export function Welcome() {
             Inkling
           </div>
           <p className="wordmark-sub" style={{ marginBottom: '32px' }}>
-            a hunch, inked in
+            Reading, Writing ー Growing
           </p>
 
-          <div className="article-text" style={{ maxWidth: '480px', margin: '0 auto', textAlign: 'left' }}>
+          <div className="article-text" style={{ maxWidth: '520px', margin: '0 auto', textAlign: 'center' }}>
             <p>
-              英文記事を読みながら気になった単語や表現をその場で拾い、書き留め、育てていくためのアプリです。まだ確信はないけれど気になったこと——inkling——を、少しずつ自分の言葉にしていきます。
+              英文記事の読解からアウトプットまでを、ワンストップで。
+            </p>
+            <p>
+              生の英語に触れながら、「使える英語力」へ変える学習プラットフォーム。
+            </p>
+            <p style={{ textAlign: 'left', marginTop: '32px' }}>
+              <b>興味のあるニュースやドキュメント</b>を読みながら、気になった単語やフレーズを文脈ごとスピーディーにストック。読み終えたら、得た知見をもとに<b>自分の言葉で要約や感想を英語で書き残します</b>。
+            </p>
+            <p style={{ textAlign: 'left', marginTop: '32px' }}>
+              単なる記事の消費で終わらせず、「読む・蓄積する・書く」の一連のフローを通すことで、<b>英文の構造把握力・速読力・語彙力、そして実用的なアウトプット力を一気通貫で鍛えます。</b>
             </p>
           </div>
 
           <div style={{ marginTop: '32px', display: 'flex', gap: '12px', justifyContent: 'center' }}>
             <Link className="btn btn-primary" to={user ? '/' : '/login'}>
-              はじめる
+              Getting Started
             </Link>
             <Link className="btn btn-ghost" to="/help">
-              使い方を見る
+              How to use
             </Link>
           </div>
         </div>
