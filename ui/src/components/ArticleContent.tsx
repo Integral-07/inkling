@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import type { Article } from '@inking/shared-types'
 import { SelectionPopover } from './SelectionPopover'
 
@@ -24,19 +24,16 @@ interface ArticleContentProps {
   onSaved?: () => void
 }
 
+
+
 // article.content is sanitized server-side in api/src/lib/readabilityExtractor.ts
 // before it's ever stored, so it's safe to render as-is here.
 export function ArticleContent({ article, onSaved }: ArticleContentProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [selection, setSelection] = useState<ActiveSelection | null>(null)
+  const isPointerDownRef = useRef(false)
 
-  // Only read the selection once the gesture ends (mouseup/touchend), not on
-  // every intermediate selectionchange during the drag itself. The popover is
-  // a real, clickable DOM element on top of the text — if it existed while
-  // the drag was still in progress, the browser's selection-extension can
-  // jump to include it (it sits later in DOM order), ballooning the range to
-  // "select everything" between the drag's start and the popover.
-  function handleSelectionEnd() {
+  function readSelection() {
     const sel = window.getSelection()
     if (!sel || sel.isCollapsed || sel.rangeCount === 0) {
       setSelection(null)
@@ -62,13 +59,54 @@ export function ArticleContent({ article, onSaved }: ArticleContentProps) {
     })
   }
 
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>
+
+    function handleSelectionChange() {
+      // ドラッグ中(マウス押下中/指でハンドル操作中)は無視。
+      // popoverが描画されると、ブラウザのネイティブ選択延長に
+      // 巻き込まれて全文選択される事故を防ぐため。
+      if (isPointerDownRef.current) return
+
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(readSelection, 150)
+    }
+
+    document.addEventListener('selectionchange', handleSelectionChange)
+    return () => {
+      document.removeEventListener('selectionchange', handleSelectionChange)
+      clearTimeout(timeoutId)
+    }
+  }, [])
+
+  function handlePointerDown() {
+    isPointerDownRef.current = true
+    setSelection(null)
+  }
+
+  function handleSelectionEnd() {
+    isPointerDownRef.current = false
+    readSelection()
+  }
+
+  function handlePointerCancel() {
+    isPointerDownRef.current = false
+    // cancel時は選択が確定しているとは限らないので、
+    // 少し待ってから現在の選択状態を読みにいく
+    setTimeout(readSelection, 0)
+  }
+
   return (
     <>
       <div
         ref={containerRef}
         className="article-text"
+        tabIndex={-1}
+        onMouseDown={handlePointerDown}
+        onTouchStart={handlePointerDown}
         onMouseUp={handleSelectionEnd}
         onTouchEnd={handleSelectionEnd}
+        onTouchCancel={handlePointerCancel}
         dangerouslySetInnerHTML={{ __html: article.content }}
       />
       {selection && (

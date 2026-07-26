@@ -73,6 +73,7 @@ export function SelectionPopover({ text, rect, articleId, contextQuote, onDismis
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [onDismiss])
+  
 
   async function handleSave() {
     const entry = await addVocabEntry({
