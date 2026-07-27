@@ -54,7 +54,8 @@ a {
 .shell {
   display: grid;
   grid-template-columns: 240px 1fr;
-  height: 100vh;
+  height: 100vh; /* fallback for browsers that don't support 100dvh */
+  height: 100dvh;
   overflow: hidden;
 }
 .drawer {
@@ -63,7 +64,8 @@ a {
   padding: 28px 20px;
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100vh; /* fallback for browsers that don't support 100dvh */
+  height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -252,7 +254,8 @@ a {
 .stage {
   padding: 40px 48px;
   overflow-x: auto;
-  height: 100vh;
+  height: 100vh; /* fallback for browsers that don't support 100dvh */
+  height: 100dvh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
