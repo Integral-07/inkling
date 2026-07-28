@@ -24,7 +24,7 @@ export function Library() {
     <section>
       <div className="stage-header">
         <div className="eyebrow">01 / Library</div>
-        <h1 className="stage-title">記事の追加と一覧</h1>
+        <h1 className="stage-title">記事の一覧</h1>
       </div>
 
       <div className="frame">

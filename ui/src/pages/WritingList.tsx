@@ -25,7 +25,7 @@ export function WritingList() {
     <section>
       <div className="stage-header">
         <div className="eyebrow">03 / Writing</div>
-        <h1 className="stage-title">執筆した記事</h1>
+        <h1 className="stage-title">作成したアウトプット</h1>
       </div>
 
       <div className="frame">

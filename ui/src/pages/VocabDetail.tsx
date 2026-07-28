@@ -27,7 +27,7 @@ export function VocabDetail() {
     <section>
       <div className="stage-header">
         <div className="eyebrow">Vocabulary / Word detail</div>
-        <h1 className="stage-title">単語詳細</h1>
+        <h1 className="stage-title">単語帳/{entry?.term || '-'}のページ</h1>
       </div>
 
       <div className="frame">

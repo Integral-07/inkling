@@ -20,7 +20,7 @@ export function Vocab() {
     <section>
       <div className="stage-header">
         <div className="eyebrow">02 / Vocabulary</div>
-        <h1 className="stage-title">登録した単語一覧</h1>
+        <h1 className="stage-title">単語帳</h1>
       </div>
 
       <div className="frame">
