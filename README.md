@@ -1,3 +1,8 @@
+![](https://img.shields.io/badge/状態-リリース-blue)
+![](https://img.shields.io/badge/build-passing-green)
+
+
+
 # Inkling 
 
 英文記事を読みながら気になった単語・表現を単語帳に貯め、記事について感想文を書くアプリ。
